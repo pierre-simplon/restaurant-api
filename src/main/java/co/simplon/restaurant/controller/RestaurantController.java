@@ -24,6 +24,11 @@ public class RestaurantController {
         return restaurantService.getRestaurants();
     }
 
+    @GetMapping("/filter")
+    public List<Restaurant> getFilteredRestaurants(@RequestParam Integer lowestNote, @RequestParam Integer highestNote) {
+        return restaurantService.getFilteredRestaurants(lowestNote, highestNote);
+    }
+
     @PostMapping("/{restaurantId}/reviews")
     public ResponseEntity<Review> addReviewToRestaurant(@PathVariable Long restaurantId, @RequestBody Review reviewToAdd) {
         Review createdReview = restaurantService.createReview(restaurantId, reviewToAdd);

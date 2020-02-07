@@ -28,6 +28,11 @@ public class RestaurantServiceImpl implements RestaurantService {
     }
 
     @Override
+    public List<Restaurant> getFilteredRestaurants(Integer lowestNote, Integer highestNote) {
+        return restaurantRepository.findAllByReviewsNoteBetween(lowestNote, highestNote);
+    }
+
+    @Override
     public Review createReview(Long restaurantId, Review reviewToCreate) {
         Optional<Restaurant> restaurant = restaurantRepository.findById(restaurantId);
 

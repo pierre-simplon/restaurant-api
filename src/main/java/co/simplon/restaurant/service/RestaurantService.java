@@ -17,6 +17,13 @@ public interface RestaurantService {
     List<Restaurant> getRestaurants();
 
     /**
+     * Get the filtered list of restaurants regarding reviews.
+     *
+     * @return the filtered list from persistence layer.
+     */
+    List<Restaurant> getFilteredRestaurants(Integer lowestNote, Integer highestNote);
+
+    /**
      * Restaurant review creation method.
      *
      * @param restaurantId the restaurant on which to link the review
