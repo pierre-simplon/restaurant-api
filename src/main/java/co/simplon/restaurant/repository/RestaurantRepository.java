@@ -10,7 +10,7 @@ import java.util.List;
 @Repository
 public interface RestaurantRepository extends JpaRepository<Restaurant, Long> {
 
-    @Query("SELECT restaurant FROM Restaurant restaurant JOIN restaurant.reviews reviews where reviews.note >= :lowest and reviews.note <= :highest")
+    @Query("SELECT DISTINCT restaurant FROM Restaurant restaurant JOIN restaurant.reviews reviews where reviews.note >= :lowest and reviews.note <= :highest")
     List<Restaurant> findAllByReviewsNoteBetween(Integer lowest, Integer highest);
 
 }
