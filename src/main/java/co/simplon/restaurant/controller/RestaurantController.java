@@ -6,6 +6,7 @@ import co.simplon.restaurant.service.RestaurantService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import javax.annotation.security.RolesAllowed;
 import java.util.List;
 
 @RestController
@@ -29,6 +30,7 @@ public class RestaurantController {
         return restaurantService.getFilteredRestaurants(lowestNote, highestNote);
     }
 
+    @RolesAllowed({ "ROLE_USER" })
     @PostMapping("/{restaurantId}/reviews")
     public ResponseEntity<Review> addReviewToRestaurant(@PathVariable Long restaurantId, @RequestBody Review reviewToAdd) {
         Review createdReview = restaurantService.createReview(restaurantId, reviewToAdd);
